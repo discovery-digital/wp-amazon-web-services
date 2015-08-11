@@ -144,10 +144,6 @@ class Amazon_Web_Services extends AWS_Plugin_Base {
 	}
 
 	function get_client() {
-		if ( !$this->get_access_key_id() || !$this->get_secret_access_key() ) {
-			return new WP_Error( 'access_keys_missing', sprintf( __( 'You must first <a href="%s">set your AWS access keys</a> to use this addon.', 'amazon-web-services' ), 'admin.php?page=' . $this->plugin_slug ) );
-		}
-
 		if ( is_null( $this->client ) ) {
 			$args = array(
 			    'key'    => $this->get_access_key_id(),
@@ -159,7 +155,6 @@ class Amazon_Web_Services extends AWS_Plugin_Base {
 
 		return $this->client;
 	}
-
 	/*
 	function get_tabs() {
 		$tabs = array( 'addons' => 'Addons', 'settings' => 'Settings', 'about' => 'About' );
